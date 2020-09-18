@@ -12,6 +12,7 @@ do {
     }
     
 } until ($started -or ($count -eq 3))
+
 if (!$started) {
     exit 1
 }
