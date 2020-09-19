@@ -62,5 +62,23 @@ pipeline {
           }
         }  
       }
+       stage('Container Scanning') {
+         parallel {
+            stage('Run Anchore') {
+               steps {
+                  pwsh(script: """
+                     Write-Output "khalil10/repo1" > anchore_images
+                  """)
+                  anchore bailOnFail: false, bailOnPluginFail: false, name: 'anchore_images'
+               }
+            }
+            stage('Run Trivy') {
+               steps {
+                  sleep(time: 30, unit: 'SECONDS')
+                  // pwsh(script: """
+                  // trivy khalil10/repo1
+                  // """)
+               }
+            }  
    }
 }
