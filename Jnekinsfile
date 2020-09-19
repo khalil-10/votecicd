@@ -26,7 +26,7 @@ pipeline {
                chmod +x -R ${env.WORKSPACE}
                ./scripts/test_container.ps1
             """)
-         }g 
+         }
          post {
             success {
                echo "App started successfully :)"
